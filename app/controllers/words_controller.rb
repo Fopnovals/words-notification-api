@@ -1,5 +1,6 @@
 class WordsController < ApplicationController
   before_action :set_words, only: [:create, :check_translation]
+  before_action :authorize_request
 
   # GET /words
   def index
@@ -10,6 +11,17 @@ class WordsController < ApplicationController
 
   # GET /words/1
   def show
+    require 'fcm'
+
+    fcm = FCM.new("AAAAj6hDgHo:APA91bESEuM-CeYqXu9CQfXsp5VBaXXWO66kGnIF8qicqV881hNgzJSEnANSLWuOyC3ye0BaR04sDheLpZJuXgSGShi6-yEI94xUTVJLgn51tweiT5vA8Rx5hc9ix0v3dkwHtEOYNsV2")
+    registration_ids= ["12", "13"]
+    options = {
+      "notification": {
+        "title": "Portugal vs. Denmark",
+        "body": "5 to 1"
+      }
+    }
+    response = fcm.send(registration_ids, options)
     # render json: @word
   end
 

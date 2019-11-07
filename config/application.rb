@@ -24,6 +24,14 @@ module EnglishWordsRuby
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'localhost:3000', '127.0.0.1:3000', 'http://192.168.1.6:8100', '*'
+        /\Ahttp:\/\/192\.168\.0\.\d{1,3}(:\d+)?\z/
+        resource '*', headers: :any, methods: [:get, :post, :patch, :put, :options]
+      end
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
