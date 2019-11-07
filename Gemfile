@@ -6,7 +6,7 @@ ruby '2.6.3'
 gem 'fcm'
 gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
-gem 'rack-cors', '~> 0.3.1'
+gem 'rack-cors', '~> 0.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
