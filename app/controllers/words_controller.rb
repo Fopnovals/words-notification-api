@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class WordsController < ApplicationController
-  before_action :set_words, only: [:create, :check_translation]
+  before_action :set_words, only: %i[create check_translation]
   before_action :authorize_request
 
   # GET /words
@@ -13,12 +15,12 @@ class WordsController < ApplicationController
   def show
     require 'fcm'
 
-    fcm = FCM.new("AAAAj6hDgHo:APA91bESEuM-CeYqXu9CQfXsp5VBaXXWO66kGnIF8qicqV881hNgzJSEnANSLWuOyC3ye0BaR04sDheLpZJuXgSGShi6-yEI94xUTVJLgn51tweiT5vA8Rx5hc9ix0v3dkwHtEOYNsV2")
-    registration_ids= ["12", "13"]
+    fcm = FCM.new('AAAAj6hDgHo:APA91bESEuM-CeYqXu9CQfXsp5VBaXXWO66kGnIF8qicqV881hNgzJSEnANSLWuOyC3ye0BaR04sDheLpZJuXgSGShi6-yEI94xUTVJLgn51tweiT5vA8Rx5hc9ix0v3dkwHtEOYNsV2')
+    registration_ids = %w[12 13]
     options = {
       "notification": {
-        "title": "Portugal vs. Denmark",
-        "body": "5 to 1"
+        "title": 'Portugal vs. Denmark',
+        "body": '5 to 1'
       }
     }
     response = fcm.send(registration_ids, options)
@@ -36,7 +38,7 @@ class WordsController < ApplicationController
     if @ru_word && @en_word
       render json: { ru: @ru_word, en: @en_word }, status: :created
     else
-      render json: { ruErr: @ru_word.errors, enErr: @en_word.errors}, status: :unprocessable_entity
+      render json: { ruErr: @ru_word.errors, enErr: @en_word.errors }, status: :unprocessable_entity
     end
   end
 
@@ -60,6 +62,7 @@ class WordsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   # def get_word
   #   @word = Word.find(params[:id])

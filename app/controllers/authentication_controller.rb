@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'json_web_token'
 
 class AuthenticationController < ApplicationController
@@ -9,7 +11,7 @@ class AuthenticationController < ApplicationController
     if @user&.authenticate(params[:password])
       token = JsonWebToken.encode(user_id: @user.id)
       time = Time.now + 24.hours.to_i
-      render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
+      render json: { token: token, exp: time.strftime('%m-%d-%Y %H:%M'),
                      first_name: @user.first_name, last_name: @user.last_name, role: @user.role, image: @user.photo_url }, status: :ok
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
@@ -25,11 +27,9 @@ class AuthenticationController < ApplicationController
     end
   end
 
-
   private
 
   def login_params
     params.permit(:email, :password, :device_id)
   end
-
 end

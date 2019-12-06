@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'json_web_token'
 
 class UsersController < ApplicationController
   before_action :authorize_request, except: :create
-  before_action :find_user, except: %i[create index ]
+  before_action :find_user, except: %i[create index]
 
   # GET /users
   def index
@@ -12,7 +14,7 @@ class UsersController < ApplicationController
 
   # GET /users/{username}
   def show
-    render json: {first_name: @user.first_name, last_name: @user.last_name, role: @user.role, image: @user.photo_url}, status: :ok
+    render json: { first_name: @user.first_name, last_name: @user.last_name, role: @user.role, image: @user.photo_url }, status: :ok
   end
 
   # POST /users
@@ -42,7 +44,6 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
   end
-
 
   private
 

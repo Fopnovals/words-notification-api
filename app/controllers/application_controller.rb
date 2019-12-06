@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'json_web_token'
 
 class ApplicationController < ActionController::API
-
   def not_found
     render json: { error: 'not_found' }
   end
