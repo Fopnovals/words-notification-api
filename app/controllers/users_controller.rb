@@ -48,8 +48,7 @@ class UsersController < ApplicationController
 
   def find_user
     if params[:id] == 'me'
-      @user = user_by_token
-      user = @user.as_json(except: [:password_digest])
+      user = @current_user.as_json(except: [:password_digest])
       render json: user, status: :ok
     else
       begin
@@ -64,10 +63,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :device_id)
   end
 
-  def user_by_token
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
-    decoded = JsonWebToken.decode(header)
-    User.find(decoded[:user_id])
-  end
+  # def user_by_token
+  #   header = request.headers['Authorization']
+  #   header = header.split(' ').last if header
+  #   decoded = JsonWebToken.decode(header)
+  #   User.find(decoded[:user_id])
+  # end
 end
