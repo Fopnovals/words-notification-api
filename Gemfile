@@ -9,6 +9,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'fcm'
 gem 'jwt'
 gem 'rack-cors', '~> 0.3.1'
+gem 'whenever', require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
