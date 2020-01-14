@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   has_secure_password
+  has_one :schedule
   # mount_uploader :avatar, AvatarUploader
   before_save { self.email = email.downcase }
   validates :first_name, presence: true, length: { maximum: 50 }
