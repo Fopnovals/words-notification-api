@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     post :check_translation
   end
 
+  get 'users/:id/collections', to: 'users#find_collections'
   post '/login', to: 'authentication#login'
   post '/device_id', to: 'authentication#device_id'
   get '/*a', to: 'application#not_found'

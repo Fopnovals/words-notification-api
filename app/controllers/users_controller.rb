@@ -4,7 +4,7 @@ require 'json_web_token'
 
 class UsersController < ApplicationController
   before_action :authorize_request, except: :create
-  before_action :find_user, except: %i[create index]
+  before_action :find_user, except: %i[create index find_collections]
 
   # GET /users
   def index
@@ -44,6 +44,13 @@ class UsersController < ApplicationController
   # DELETE /users/{username}
   def destroy
     @user.destroy
+  end
+
+  # GET /users/id/collections
+  def find_collections
+    user = params[:id] == 'me' ? @current_user : User.find(params[:id])
+    collections = user.collections
+    render json: { collections: collections }
   end
 
   private
