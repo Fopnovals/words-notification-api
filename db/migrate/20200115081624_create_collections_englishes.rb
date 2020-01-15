@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCollectionsEnglishes < ActiveRecord::Migration[6.0]
   def change
     create_table :collections_englishes, id: false do |t|

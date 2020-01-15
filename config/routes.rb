@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   resources :words
   resources :users
+  resources :collections
   namespace :words do
     post :check_translation
   end
